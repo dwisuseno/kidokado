@@ -1,8 +1,7 @@
-<div class="orderbox-container hidden">
-    <div class="title grid">Order Box</div>
+<div class="orderbox-container">
     <div id="orderbox" class="grid"></div>
     <div id="checkout-btn" class="button">Checkout</div>
-    <div id="cancel-btn" class="button">Batal</div>
+    <div id="cancel-btn" class="button">Cancel</div>
     <div style="clear:both;"></div>
 </div>
 
@@ -19,16 +18,24 @@
                         <div class="price">Rp <?=number_format($item->cust_price, 0, ',', '.');?></div>
                         <div class="detail-btn button">Lihat Detail</div>
                         <div class="order-btn button">Pesan</div>
-                        <div style="clear:both;"></div>
                     </div>
                 </div>
                 <?php } ?>
             </div>
         </div>
     </div>
-    
-    <script>
-        $('.showcase .container .item .detail-btn').click(function() {
+
+</div>
+
+<script>
+    $("#checkout-btn").click(function() {
+        header-redirect("checkout.html");   
+    });
+
+    $("#prd01-showcase .item").each(function() {
+        $(this).append('<div class="detail-btn button">View Detail</div>');
+
+        $(this).children('.detail-btn').click(function() {
             var detailCont = $("<div class='detail-container'></div>");
             var detail = $("<div class='item'><img src='img/full.jpg'></div>");
 
@@ -47,34 +54,33 @@
 
             $(".showcase").append(detailCont);
         });
-        
-        $('.showcase .container .item .order-btn').click(function() {
+
+        $(this).append('<div class="order-btn button">Order</div>');
+
+        $(this).children(".order-btn").click(function() {
             $(".orderbox-container").show();
 
             var order = $("<div class='order prd01'></div>");
             var detail = $("<div class='detail'>" +
-                         "<input class='input' type='number' placeholder='jumlah set' step=0.5>" + 
-                         "<input class='input' type='text' placeholder='text'>" + 
+                         "<input type='number' placeholder='jumlah set' step=0.5>" + 
+                         "<input type='text' placeholder='text'>" + 
                          "<div class='remove-btn'>x</div>" + 
                          "</div>");
-            
-            var clone = $(this).parent().clone();
-            clone.children('.button').remove();
-            clone.children('.price').remove();
-            clone.append($("<input class='input' type='number' placeholder='jumlah set' step=0.5>" + 
-                         "<input class='input' type='text' placeholder='text'>" + 
-                         "<div class='remove-btn'>x</div>"));
-            order.append(clone);
+
+            order.append($(this).parent().children("img").clone());
+            order.append(detail);
 
             detail.children(".remove-btn").click(function() {
                 $(this).parent().parent().remove();
             });
 
             $("#orderbox").append(order);
+
         });
-    </script>
+    });
 
-</div>
-
-<script>
+    $("#cancel-btn").click(function() {
+        $(".orderbox-container").hide();
+        $("#orderbox").html("");
+    });
 </script>
