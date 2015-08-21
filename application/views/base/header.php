@@ -15,7 +15,7 @@ date_default_timezone_set('Asia/Jakarta');
 <html>
 <head>
     <meta charset="utf-8">
-    <title>KidoKado.com</title>
+    <title><?php echo $title?></title>
     <link rel="shortcut icon" href="<?=base_url();?>asset/images/favicon.ico">
     <link rel="stylesheet" href="<?=base_url();?>asset/css/style.css">
     <script src="<?=base_url();?>asset/js/jquery.min.js"></script>
@@ -29,10 +29,18 @@ date_default_timezone_set('Asia/Jakarta');
             <div id="userspace">
                 <div class="content">
                     <div class="cart">Rp 250.000 (2 item)</div>
-                    <div class="user">Username</div>
+                    <?php if($this->session->userdata('logged_in')){ ?>
+                        <div class="user"><?php echo $this->session->userdata('username'); ?></div>
+                    <?php } else {?>
+                        <form action="<?php echo base_url('')?>Login/do_login" method="post">
+                            <input class="input" type="text" name="username" placeholder="username">
+                            <input class="input" type="password" name="password" placeholder="password">
+                            <button class="button" type="submit">Login</button>
+                        </form>
+                    <?php } ?>
                 </div>
-                <div class="search">
-                    <input class="input" type="text" id="searchbar" placeholder="Cari">
+                <div class="content">
+                    <button >Register</button>
                 </div>
             </div>
             <div id="nav">
