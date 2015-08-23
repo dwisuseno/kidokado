@@ -38,7 +38,7 @@ date_default_timezone_set('Asia/Jakarta');
                             <input class="input" type="text" name="username" placeholder="username">
                             <input class="input" type="password" name="password" placeholder="password">
                             <button class="button" type="submit">Login</button>
-                            <a href="<?php echo base_url();?>user/register"><button class="button">Register</button></a>
+                            <a class="user" href="<?php echo base_url();?>user/Register">Register</a>
                         </form>
                     <?php } ?>
                 </div>
