@@ -29,19 +29,22 @@ date_default_timezone_set('Asia/Jakarta');
             <div id="userspace">
                 <div class="content">
                     <div class="cart">Rp 250.000 (2 item)</div>
+
                     <?php if($this->session->userdata('logged_in')){ ?>
                         <div class="user"><?php echo $this->session->userdata('username'); ?></div>
+                        <a href="<?php echo base_url();?>user/Login/do_logout"><button class="button">Logout</button></a>
                     <?php } else {?>
-                        <form action="<?php echo base_url('')?>Login/do_login" method="post">
+                        <form action="<?php echo base_url('')?>user/Login/do_login" method="post">
                             <input class="input" type="text" name="username" placeholder="username">
                             <input class="input" type="password" name="password" placeholder="password">
                             <button class="button" type="submit">Login</button>
+                            <a href="<?php echo base_url();?>user/register"><button class="button">Register</button></a>
                         </form>
                     <?php } ?>
                 </div>
-                <div class="content">
-                    <button >Register</button>
-                </div>
+                
+                    
+                
             </div>
             <div id="nav">
                 <a href="home"><div class="item <?=($navActive=="home")?"active":"";?>">Home</div></a>
