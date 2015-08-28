@@ -18,8 +18,21 @@ date_default_timezone_set('Asia/Jakarta');
     <title><?php echo $title?></title>
     <link rel="shortcut icon" href="<?=base_url();?>asset/images/favicon.ico">
     <link rel="stylesheet" href="<?=base_url();?>asset/css/style.css">
+    <link rel="stylesheet" href="<?=base_url();?>asset/css/jquery-ui.css">
+    <script src="<?=base_url();?>asset/js/jquery.js"></script> 
     <script src="<?=base_url();?>asset/js/jquery.min.js"></script>
     <script src="<?=base_url();?>asset/js/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        $("#datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showWeek: true
+        });
+    });
+    </script>
+    <script src="http://www.code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://www.code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </head>
 
 <body>
