@@ -16,4 +16,14 @@ class Register extends CI_Controller {
 		$data['kecamatan'] = $this->M_register->getKecamatan();
 		$this->load->view('base/index', $data);
 	}
+
+	public function registering(){
+		$firstname = $this->input->post('firstname');
+		$lastname = $this->input->post('lastname');
+		$username = $this->input->post('username');
+		$email = $this->input->post('email');
+		$password = md5($this->input->post('password'));
+		$this->M_register->register($firstname,$lastname,$username,$email,$password);
+		redirect('product');
+	}
 }

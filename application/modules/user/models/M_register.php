@@ -13,4 +13,15 @@ Class M_register extends CI_Model {
         $hasil = $this->db->get();
         return $hasil->result();
     }
+
+    function register($firstname,$lastname,$username,$email,$password){
+    	$data = array(
+    		'firstname' => $firstname,
+    		'lastname' => $lastname,
+    		'username' => $username,
+    		'email' => $email,
+    		'password' => $password,
+    		);
+    	$this->db->insert('tb_user',$data);
+    }
 }
